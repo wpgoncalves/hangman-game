@@ -1,0 +1,321 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+:root {
+    --light-blue-100: #F3F5FC;
+    --light-blue-200: #EFF1FA;
+    --light-blue-300: #E9ECF8;
+    --light-blue-400: #AAB2D5;
+    --light-blue-500: #757FB2;
+    --dark-blue-100: #609ED4;
+    --dark-blue-200: #356EA9;
+    --dark-blue-300: #0A3871;
+    --dark-blue-400: #072B61;
+    --dark-blue-500: #052051;
+    --gray-100: #CED4DA;
+    --gray-200: #ADB5BD;
+    --gray-300: #868E96;
+    --gray-400: #495057;
+    --gray-500: #343A40;
+    --body-font-family: 'Inter', sans-serif;
+    --body-font-style: "normal";
+    --body-font-size: 16px;
+    --body-font-weight: 400;
+    --body-line-height: 1.5;
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    font-family: var(--body-font-family);
+    font-style: var(--body-font-style);
+    font-size: var(--body-font-size);
+    font-weight: var(--body-font-weight);
+    line-height: var(--body-line-height);
+    background: var(--light-blue-100);
+}
+
+header {
+    display: flex;
+    flex-grow: 0;
+    width: 100%;
+    padding-top: 40px;
+    padding-left: 84px;
+}
+
+header a {
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+main nav {
+    display: flex;
+    flex-direction: column;
+    width: 317px;
+    margin: 29px;
+    align-items: center;
+    justify-content: center;
+    gap: 29px;
+}
+
+main nav a {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main form {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+    width: 100%;
+}
+
+main form label {
+	display: none;
+}
+
+main form input {
+	/* display: flex; */
+	/* flex-grow: 1; */
+    /* text-transform: uppercase; */
+	color: var(--dark-blue-300);
+	background: inherit;
+	width: 100%;
+	outline: none;
+	border: none;
+	font-size: 32px;
+}
+
+main form input:invalid {
+    /* color: red; */
+    border: 1px solid red;
+    font-style: italic;
+}
+
+main form input:valid {
+    /* color: greenyellow; */
+}
+
+
+main form input::placeholder {
+	color: var(--dark-blue-300);
+}
+main .informations {
+	display: flex;
+	flex-grow: 0;
+	align-items: center;
+	gap: 8px;
+    width: 100%;
+	color: var(--gray-400);
+	font-size: 12px;
+	opacity: 0.8;
+    margin: 16px 0;
+}
+
+main .commands {
+	display: flex;
+	flex-grow: 0;
+	align-items: center;
+	justify-content: center;
+	gap: 24px;
+    width: 100%;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    padding: 20px 5px;
+    color: #FFFFFF;
+    text-align: center;
+    text-shadow: 2px 2px 2px var(--gray-500);
+    background: linear-gradient(135deg, var(--dark-blue-500), var(--dark-blue-200));
+}
+
+footer div {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+footer div a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.main-content {
+    width: 940px;
+    padding: 120px 40px 40px 40px;
+}
+
+.btn {
+    font-size: 16px;
+    text-align: center;
+    line-height: 19px;
+    width: 100%;
+    padding: 24px;
+    border-radius: 24px;
+    transition: background 0.2s ease-out, box-shadow 0.3s ease-out;
+}
+
+.btn:focus,
+.btn:hover {
+    outline: none;
+    font-weight: 600;
+    box-shadow: 0 5px 10px var(--gray-500);
+}
+
+.btn-dark-blue {
+    height: 105px;
+    color: #FFFFFF;
+    background: var(--dark-blue-300);
+    border: 1px solid var(--dark-blue-300);
+}
+
+.btn-dark-blue:focus,
+.btn-dark-blue:hover {
+    background: var(--dark-blue-400);
+}
+
+.btn-light-blue {
+    height: 67px;
+    color: var(--dark-blue-300);
+    background: #FFFFFF;
+    border: 1px solid var(--dark-blue-300);
+}
+
+.btn-light-blue:focus,
+.btn-light-blue:hover {
+    background: var(--light-blue-200);
+}
+
+@-webkit-keyframes swing {
+    15% {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+
+    30% {
+        -webkit-transform: translateX(-5px);
+        transform: translateX(-5px);
+    }
+
+    50% {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+
+    65% {
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+    }
+
+    80% {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+@keyframes swing {
+    15% {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+
+    30% {
+        -webkit-transform: translateX(-5px);
+        transform: translateX(-5px);
+    }
+
+    50% {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+
+    65% {
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+    }
+
+    80% {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+@media only screen and (max-width:940px) {
+    .main-content {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width:768px) {
+    .btn:focus,
+    .btn:hover {
+        -webkit-animation: 1.1s ease-in-out 0.2s 1 normal both running swing;
+        animation: 1.1s ease-in-out 0.2s 1 normal both running swing;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    header {
+        padding-top: 76px;
+        padding-left: 40px;
+    }
+
+    main {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width:375px) {
+    header {
+        padding-top: 24px;
+        padding-left: 16px;
+    }
+
+    main .commands {
+        flex-direction: column;
+    }
+
+    .main-content {
+        padding: 80px 16px 16px 16px;
+    }
+}
