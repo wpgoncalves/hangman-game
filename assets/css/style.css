@@ -85,21 +85,18 @@ main nav a {
     justify-content: center;
 }
 
-main form {
+main .input {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
     width: 100%;
 }
 
-main form label {
+main .input label {
 	display: none;
 }
 
-main form input {
-	/* display: flex; */
-	/* flex-grow: 1; */
-    /* text-transform: uppercase; */
+main .input input {
 	color: var(--dark-blue-300);
 	background: inherit;
 	width: 100%;
@@ -108,20 +105,15 @@ main form input {
 	font-size: 32px;
 }
 
-main form input:invalid {
-    /* color: red; */
-    border: 1px solid red;
+main .input input:invalid {
+    color: red;
     font-style: italic;
 }
 
-main form input:valid {
-    /* color: greenyellow; */
-}
-
-
-main form input::placeholder {
+main .input input::placeholder {
 	color: var(--dark-blue-300);
 }
+
 main .informations {
 	display: flex;
 	flex-grow: 0;
@@ -141,6 +133,10 @@ main .commands {
 	justify-content: center;
 	gap: 24px;
     width: 100%;
+}
+
+main .commands a {
+	text-decoration: none;
 }
 
 footer {
