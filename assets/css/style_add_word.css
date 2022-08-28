@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+main .input {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+    width: 100%;
+}
+
+main .input label {
+	display: none;
+}
+
+main .input input {
+	color: var(--dark-blue-300);
+	background: inherit;
+	width: 100%;
+	outline: none;
+	border: none;
+	font-size: 32px;
+}
+
+main .input input:invalid {
+    color: red;
+    font-style: italic;
+}
+
+main .input input::placeholder {
+	color: var(--dark-blue-300);
+}
+
+main .informations {
+	display: flex;
+	flex-grow: 0;
+	align-items: center;
+	gap: 8px;
+    width: 100%;
+	color: var(--gray-400);
+	font-size: 12px;
+	opacity: 0.8;
+    margin: 16px 0;
+}
+
+main .commands {
+	display: flex;
+	flex-grow: 0;
+	align-items: center;
+	justify-content: center;
+	gap: 24px;
+    width: 100%;
+}
+
+main .commands a {
+	text-decoration: none;
+}
