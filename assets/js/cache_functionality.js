@@ -33,7 +33,7 @@ function getCachedWordsList() {
 
 /* (en) Caches a default list of words or a new list of words. (pt-BR) Define em cache uma lista padrão de palavras ou uma nova lista de palavras.*/
 function setCachedWordsList(wordsList) {
-    if (wordsList === undefined){
+    if (wordsList === undefined) {
         localStorage.setItem(key, wordsListDefault.join(";"));
     } else {
         localStorage.setItem(key, wordsList.join(";"));
