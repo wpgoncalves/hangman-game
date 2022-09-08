@@ -34,6 +34,8 @@ const isWinner = () => {
 
 };
 
+// if (canvasGameBoard.getContext) { var ctx = canvasGameBoard.getContext("2d"); }
+var ctx = canvasGameBoard.getContext ? canvasGameBoard.getContext("2d") : null;
 var correctLetters = [];
 var wrongLetters = [];
 
@@ -46,64 +48,67 @@ window.onbeforeunload = (e) => {
 
 /* (pt-BR) Captura o evento de carregamento completo do documento no DOM. (en) Captures the document complete loading event in the DOM. */
 document.addEventListener("DOMContentLoaded", () => {
+
     if (!isExistCachedWordsList()) { setCachedWordsList(); }
 
     loadWordTemplate();
 
-    // if (gameBoard.getContext) {
-    //     var ctx = gameBoard.getContext("2d");
-
-    //     ctx.fillStyle = "yellow";
-    //     ctx.fillRect(618, 400, 1200, 800);
-
-    //     ctx.fillStyle = "black";
-    //     ctx.beginPath();
-    //     ctx.moveTo(125, 125);
-    //     ctx.lineTo(125, 45);
-    //     ctx.lineTo(45, 125);
-    //     ctx.closePath();
-    //     ctx.stroke();
-
-
-    //     ctx.font = "72px DynaPuff";
-    //     ctx.fillStyle = "#052051"
-    //     ctx.textBaseline = "middle"
-    //     ctx.textAlign = "Center"
-    //     ctx.fillText("Teste", 0, 400);
-    // }
 });
 
 /* (pt-BR) Captura o evento de pressionamento das teclas realizando o tratamento das teclas válidas. (en) Captures the key press event performing the treatment of valid keys. */
 document.addEventListener("keypress", (e) => {
 
-    /[A-Z]/gi.test(e.key) ?
-        attempts(e.key.toUpperCase()) :
-        alert("Devem ser usados apenas letras de A a Z.");
+    if (isUndefined(isWinner())) {
+
+        /[A-Z]/gi.test(e.key) && e.key !== "Enter" ?
+            attempts(e.key.toUpperCase()) :
+            alert("Devem ser usados apenas letras de A a Z.");
+
+
+    } else if (isWinner()) {
+        ctx.font = "72px DynaPuff";
+        ctx.fillStyle = "#052051"
+        ctx.textBaseline = "middle"
+        ctx.textAlign = "Center"
+        ctx.shadowBlur = 5;
+        ctx.shadowColor = "#343A40";
+        ctx.shadowOffsetX = 5;
+        ctx.shadowOffsetY = 5;
+        ctx.fillText("Você Venceu. Parabéns!", 160, 150);
+    } else {
+        ctx.font = "72px DynaPuff";
+        ctx.fillStyle = "#052051"
+        ctx.textBaseline = "middle"
+        ctx.textAlign = "Center"
+        ctx.shadowBlur = 5;
+        ctx.shadowColor = "#343A40";
+        ctx.shadowOffsetX = 5;
+        ctx.shadowOffsetY = 5;
+        ctx.fillText("Fim de Jogo!", 380, 150);
+    }
 
 });
 
 /* (pt-BR) Captura o evento de clique do mouse sobre o botão de Novo jogo. (en) Captures the mouse click event on the New Game button. */
 btnNewGame.addEventListener("click", () => {
-    if (isUndefined(isWinner())) {
-        let response = confirm("Confirmar iniciar um novo jogo?");
 
-        if (response === true) { 
-            window.onbeforeunload = null;
-            document.location.reload();
-        }
+    let response = confirm("Confirmar iniciar um novo jogo?");
+
+    if (response === true) {
+        window.onbeforeunload = null;
+        document.location.reload();
     }
+
 });
 
 /* (pt-BR) Captura o evento de clique do mouse sobre o botão de Desistir. (en) Capture the mouse click event on the Give up button. */
 btnGiveUp.addEventListener("click", () => {
 
-    if (isUndefined(isWinner())) {
-        let response = confirm("Confirma desistir da partida?");
+    let response = confirm("Confirma desistir da partida?");
 
-        if (response === true) {
-            window.onbeforeunload = null;
-            document.location.href = "/";
-        }
+    if (response === true) {
+        window.onbeforeunload = null;
+        document.location.href = "/";
     }
 
 });
@@ -136,17 +141,12 @@ function attempts(letterPressed) {
         }
 
         loadWordTemplate();
+        loadGibbetTemplate();
 
         if (!isUndefined(isWinner())) {
             document.dispatchEvent(new KeyboardEvent("keypress", { "key": "Enter" }));
         }
 
-    } else if (isWinner()) {
-        console.log("Parabéns!!! Você VENCEU!!!");
-        document.location.reload();
-    } else {
-        console.log("Infelizmente não foi dessa vez! Você PERDEU!!!");
-        document.location.reload();
     }
 
 }
@@ -182,6 +182,96 @@ function loadWordTemplate() {
         fragmentWrong.appendChild(spanLetter(wrongLetters, l));
     });
     divAttempts.appendChild(fragmentWrong);
+
+}
+
+/* (pt-BR) Responsável por realizar o desenho da forca no canvas. (en) Responsible for drawing the force on the canvas. */
+function loadGibbetTemplate() {
+
+    ctx.fillStyle = "#99280a";
+    ctx.lineWidth = 3;
+    ctx.lineJoin = "bevel";
+
+    if (wrongLetters.length > 0) {
+        // Primeira tentativa
+        ctx.fillRect(400, 350, 25, 400);
+        ctx.strokeRect(400, 350, 25, 400);
+    }
+
+    if (wrongLetters.length > 1) {
+        // Segunda tentativa
+        ctx.fillRect(400, 350, 300, 25);
+        ctx.strokeRect(400, 350, 300, 25);
+
+        ctx.beginPath();
+        ctx.moveTo(425, 450);
+        ctx.lineTo(500, 375);
+        ctx.lineTo(525, 375);
+        ctx.lineTo(425, 475);
+        ctx.lineTo(425, 450);
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    if (wrongLetters.length > 2) {
+        // Terceira tentativa
+        ctx.moveTo(675, 375);
+        ctx.lineTo(675, 405);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    if (wrongLetters.length > 3) {
+        // Quarta tentativa
+        ctx.beginPath();
+        ctx.fillStyle = "#fae994";
+        ctx.arc(675, 445, 40, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    if (wrongLetters.length > 4) {
+        // Quinta tentativa
+        ctx.moveTo(675, 485);
+        ctx.lineTo(620, 550);
+        ctx.lineTo(610, 550);
+        ctx.stroke();
+    }
+
+    if (wrongLetters.length > 5) {
+        // Sexta tentativa
+        ctx.moveTo(675, 485);
+        ctx.lineTo(730, 550);
+        ctx.lineTo(740, 550);
+        ctx.stroke();
+    }
+
+    if (wrongLetters.length > 6) {
+        // Sétima tentativa
+        ctx.moveTo(675, 485);
+        ctx.lineTo(675, 600);
+        ctx.stroke();
+    }
+
+    if (wrongLetters.length > 7) {
+        // Oitava tentativa
+        ctx.moveTo(675, 600);
+        ctx.lineTo(620, 665);
+        ctx.moveTo(620, 665);
+        ctx.lineTo(610, 665);
+        ctx.stroke();
+    }
+
+    if (wrongLetters.length > 8) {
+        // Nona e última tentativa
+        ctx.moveTo(675, 600);
+        ctx.lineTo(730, 665);
+        ctx.moveTo(730, 665);
+        ctx.lineTo(740, 665);
+        ctx.closePath();
+        ctx.stroke();
+    }
 
 }
 

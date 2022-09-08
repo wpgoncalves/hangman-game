@@ -227,9 +227,13 @@ footer div a {
 }
 
 #game-board {
-    display: none;
     border-radius: 24px;
-    background: var(--light-blue-300);
+    background-image: url("../img/background.jpg");
+    background-size: 100% 100%;
+    background-position: center center;
+    background-color: transparent;
+    border: 3px solid var(--dark-blue-300);
+    box-shadow: 0 5px 10px var(--gray-500);
 }
 
 .main-content {
